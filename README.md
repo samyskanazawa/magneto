@@ -6,7 +6,7 @@
 	- Java    ( Version homologada: 11.0.9, vendor: Oracle Corporation )
 	- STS     ( Version: 4.4.1.RELEASE)
 	- Spring boot (Version: 2.4.2)
-	- 
+	
 
 Descargando el repositorio:
 
@@ -34,9 +34,9 @@ End-Points:
 
 	-  /mutant: en donde se puede detectar si un humano es mutante enviando la secuencia de 
 	   ADN mediante un HTTP POST con un Json el cual tenga el siguiente formato:
-       POST → /mutant/
+       
        {"dna":["ATGCGA","CAGTGC","TTATGT","AGAAGG","CCCCTA","TCACTG"]}
     
-    - /stats: devuelva un Json con las estadísticas de las verificaciones de ADN: 
+    - /stats: devuelve un Json con las estadísticas de las verificaciones de ADN: 
     	{"count_mutant_dna":40, "count_human_dna":100: "ratio":0.4} 
     	

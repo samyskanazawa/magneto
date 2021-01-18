@@ -22,7 +22,7 @@ import io.swagger.annotations.ApiOperation;
  *
  */
 @RestController
-@RequestMapping("api")
+@RequestMapping("/api")
 public class DnaChainRest {
 
 	@Inject

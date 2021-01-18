@@ -9,4 +9,7 @@ import com.magneto.mutants.repository.data.DnaChain;
  *
  */
 public interface DnaRepository extends JpaRepository<DnaChain, Long> {
+
+	DnaChain findDnaChainByDna(String dna);
+
 }

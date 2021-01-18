@@ -35,17 +35,29 @@ public class DnaChainServiceImpl implements DnaChainService {
 	private Integer g;
 	
 	@Override
-	public boolean isMutant(DnaChainDTO dnaChain) throws IllegalArgumentException {
-		evaluateFormat(dnaChain.getDna());
+	public boolean isMutant(DnaChainDTO dnaChainDto) throws IllegalArgumentException {
+		evaluateFormat(dnaChainDto.getDna());
 		this.chainCount = 0;
-		boolean mutant = horizontalTravel(dnaChain.getDna());
+//		Convierto la lista en una unica cadena para ver si fue verificado o no
+		StringBuilder chain = new StringBuilder();
+		for(String dna : dnaChainDto.getDna()) {
+			chain.append(dna);
+		}
+//		Verifico si ya fue grabada anteriormente
+		DnaChain dna = dnaRepository.findDnaChainByDna(chain.toString());
+		if(dna != null) {
+			return dna.getIsMutant();
+		}	
+//		Comienza la verificacion del ADN
+		boolean mutant = horizontalTravel(dnaChainDto.getDna());
 		if(!mutant) {
-			mutant = verticalTravel(dnaChain.getDna());
+			mutant = verticalTravel(dnaChainDto.getDna());
 		}
 		if(!mutant) {
-			mutant = obliqueTravel(dnaChain.getDna());
+			mutant = obliqueTravel(dnaChainDto.getDna());
 		}
-		DnaChain dna = DnaMapper.toEntity(dnaChain, mutant);
+//		Mappeo el dto de entrada a una entidad
+		dna = DnaMapper.toEntity(dnaChainDto, mutant, chain.toString());
 //		Guardo el ADN
 		dnaRepository.save(dna);
 //		Actualizo los stats

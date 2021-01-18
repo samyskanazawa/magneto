@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import com.magneto.mutants.Constants;
 import com.magneto.mutants.repository.data.DnaChain;
 import com.magneto.mutants.service.dto.DnaChainDTO;
 
@@ -18,17 +19,13 @@ public class DnaMapper {
 	 * @param isMutant
 	 * @return
 	 */
-	public static DnaChain toEntity(DnaChainDTO dnaChainDTO, boolean isMutant) {
+	public static DnaChain toEntity(DnaChainDTO dnaChainDTO, boolean isMutant, String chain) {
 		DnaChain dna = new DnaChain();
 		dna.setIsMutant(isMutant);
 		dna.setLength(dnaChainDTO.getDna().size());
 		dna.setRecording(new Date());
-		dna.setRemoved(0);
-		StringBuilder chain = new StringBuilder();
-		for(String dnaChain : dnaChainDTO.getDna()) {
-			chain.append(dnaChain);
-		}
-		dna.setDna(chain.toString());
+		dna.setRemoved(Constants.VALID);
+		dna.setDna(chain);
 		return dna;
 	}
 	

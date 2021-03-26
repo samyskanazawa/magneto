@@ -1,4 +1,4 @@
-package com.magneto.mutants.controllers;
+package com.magneto.mutants.rest;
 
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
